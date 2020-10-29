@@ -1,6 +1,3 @@
-class KingdomSerializer < ActiveModel::Serializer 
-    include FastJsonapi::ObjectSerializer
-    attributes :id, :Body_Form, :Mitochondria
-
-    has_many :animals 
-  end
+class KingdomSerializer < ActiveModel::Serializer
+  attributes :id, :name, :Body_Form, :Mitochondria, :Cell_Wall, :Nutrition, :Nervous_System
+end

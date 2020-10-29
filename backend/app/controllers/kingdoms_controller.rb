@@ -2,19 +2,19 @@ class KingdomsController < ApplicationController
     before_action :set_kingdom, only: [:show]
     def index 
         kingdoms = Kingdom.all 
-        render json: KingdomSerializer.new(kingdoms)
+        render json: kingdoms 
     end 
 
     def show 
-        render json:kingdom 
+        render json: @kingdom 
     end 
 
     def create 
-        @kingdom = Kingdom.new(kingdom_params)
-        if @kingdom.save 
-            render json: @kingdom, status: :created, location: @kingdom
+        kingdom = Kingdom.new(kingdom_params)
+        if kingdom.save 
+            render json: kingdom 
         else 
-            render json: @kingdom.errors, status: unprocessable_entity 
+            render json: kingdom.errors 
         end 
     end 
 

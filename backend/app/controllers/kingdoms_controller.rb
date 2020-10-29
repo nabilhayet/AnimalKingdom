@@ -1,12 +1,12 @@
 class KingdomsController < ApplicationController
     before_action :set_kingdom, only: [:show]
     def index 
-        @kingdoms = Kingdom.all 
-        render json: @kingdoms
+        kingdoms = Kingdom.all 
+        render json: KingdomSerializer.new(kingdoms)
     end 
 
     def show 
-        render json:@kingdom 
+        render json:kingdom 
     end 
 
     def create 

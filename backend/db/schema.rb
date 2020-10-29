@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_10_29_031952) do
 
   create_table "kingdoms", force: :cascade do |t|
+    t.string "name"
     t.string "Body_Form"
     t.string "Mitochondria"
     t.string "Cell_Wall"

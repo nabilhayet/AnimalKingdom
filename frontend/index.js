@@ -4,13 +4,10 @@ const main = document.getElementById("main")
 const kingdomFormDiv = document.getElementById("kingdom-form")
 
 
-
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
     getKingdoms()
 })
-
-
 
 // ****** requests to backend
 
@@ -40,14 +37,13 @@ function getKingdoms(){
 
 function createKingdom(){
     event.preventDefault()
-
     const kingdom = {
         name: document.getElementById("name").value,
-        Body_Form: document.getElementById("Body_Form").value,
-        Mitochondria: document.getElementById(" Mitochondria").value,
-        Cell_Wall: document.getElementById("Cell_Wall").value,
-        Nutrition: document.getElementById("Nutrition").value,
-        Nervous_System: document.getElementById("Nervous_System").value
+        Body_Form: document.getElementById("body_form").value,
+        Mitochondria: document.getElementById("mitochondria").value,
+        Cell_Wall: document.getElementById("cell_wall").value,
+        Nutrition: document.getElementById("nutrition").value,
+        Nervous_System: document.getElementById("nervous_system").value
     }
 
     const configobj = {
@@ -63,10 +59,10 @@ function createKingdom(){
     .then(response => response.json())
     .then(kingdom => {
         main.innerHTML += displayKingdoms(kingdom)
-        kingdomFormDiv = ""
+        
     })
+    kingdomFormDiv = ""
 }
-
 
 
 // ******* Helpers for generating HTML and adding event listeners 
@@ -84,16 +80,24 @@ function makeKingdomForm(){
         <form>
             Kingdom Name : <input type="text" id="name">
             <br>
-            Body Form : <input type="text" id="Body_Form">
             <br>
-            Mitochondria : <input type="text" id="Mitochondria">
+            Body Form : <input type="text" id="body_form">
             <br>
-            Cell_Wall : <input type="text" id="Cell_Wall">
             <br>
-            Nutrition : <input type="text" id=" Nutrition">
+            Mitochondria : <input type="text" id="mitochondria">
             <br>
-            Nervous_System : <input type="text" id="Nervous_System ">
-
+            <br>
+            Cell_Wall : <input type="text" id="cell_wall">
+            <br>
+            <br>
+            Nutrition : <input type="text" id="nutrition">
+            <br>
+            <br>
+            Nervous_System : <input type="text" id="nervous_system">
+            <br>
+            <br>
+            <input type="submit">
+        </form> 
  
     `)
 }
@@ -101,11 +105,11 @@ function makeKingdomForm(){
 function showKingdom(kingdom){
    return(`
    <h3>Kingdom Name : ${kingdom.name}</h3> 
-   <h4>Body_Form : ${kingdom.Body_Form}</h4> 
-   <h4>Mitochondria : ${kingdom.Mitochondria}</h4> 
-   <h4>Cell_Wall : ${kingdom.Cell_Wall}</h4> 
-   <h4>Nutrition : ${kingdom.Nutrition}</h4> 
-   <h4>Nervous_System : ${kingdom.Nervous_System}</h4>
+   <h4>Body_Form : ${kingdom.body_form}</h4> 
+   <h4>Mitochondria : ${kingdom.mitochondria}</h4> 
+   <h4>Cell_Wall : ${kingdom.cell_wall}</h4> 
+   <h4>Nutrition : ${kingdom.nutrition}</h4> 
+   <h4>Nervous_System : ${kingdom.nervous_system}</h4>
         `) 
 }
 

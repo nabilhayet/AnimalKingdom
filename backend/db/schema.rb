@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_031952) do
+ActiveRecord::Schema.define(version: 2020_10_30_030825) do
+
+  create_table "animals", force: :cascade do |t|
+    t.string "name"
+    t.string "phylum"
+    t.string "order"
+    t.string "species"
+    t.integer "kingdom_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "kingdoms", force: :cascade do |t|
     t.string "name"
-    t.string "Body_Form"
-    t.string "Mitochondria"
-    t.string "Cell_Wall"
-    t.string "Nutrition"
-    t.string "Nervous_System"
+    t.string "body_form"
+    t.string "mitochondria"
+    t.string "cell_wall"
+    t.string "nutrition"
+    t.string "nervous_system"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

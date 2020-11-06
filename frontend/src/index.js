@@ -21,7 +21,7 @@ function fetchSingleKingdom(){
     .then(kingd => {
         const kd = new Kd(kingd)
         main.querySelector("ul").innerHTML += kd.displaySingleKingdom()
-        kd.renderULs()
+        kd.renderAnimals()
 
     })
 }
@@ -35,7 +35,7 @@ function fetchAllKingdom(){
         kingdoms.forEach(kingd => { 
             const kd =  new Kd(kingd)
             main.querySelector("ul").innerHTML += kd.renderKingdomName()
-            kd.renderULs()
+            kd.renderAnimals()
         })
          clickableLinks()
         })  

@@ -17,7 +17,7 @@ class Kd {
                 )
     }
 
-    renderULs(){
+    renderAnimals(){
         const ul = document.querySelector(`li#kingdom-${this.id} #animals`)
         this.animals.forEach(animal => {
             ul.innerHTML += `<li>${animal.name}</li>` 

@@ -1,12 +1,15 @@
 // ***** golbal constants so i don't need to repeat myself 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URLS = 'http://localhost:3000'
 const main_animal = document.getElementById("main-animal")
 const createAnimalFormDiv = document.getElementById("animal-form")
+
+const main_kingdom = document.querySelector("#main ul")
+const divKingdomForm = document.getElementById("kingdom-form")
 
 
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
-    clickableLinks()
+    clickableLinksAnimals()
 })
 
 // ****** requests to backend
@@ -14,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function fetchSingleAnimal(){
     event.preventDefault()
     const id = event.target.dataset.id 
-    clearContent()
+    clearContentAnimal()
     createAnimalFormDiv.innerHTML = ''
-    fetch(BASE_URL +  '/animals/' + id)
+    fetch(BASE_URLS +  '/animals/' + id)
     .then(response => response.json())
     .then(ani => {
         const an = new An(ani)
@@ -28,8 +31,8 @@ function fetchSingleAnimal(){
 
 function fetchAllAnimal(){
     createAnimalFormDiv.innerHTML = ""
-    clearContent()
-    fetch(BASE_URL + '/animals')
+    clearContentAnimal()
+    fetch(BASE_URLS + '/animals')
     .then(response => response.json())
     .then(animals => {
         animals.forEach(ani => { 
@@ -37,14 +40,14 @@ function fetchAllAnimal(){
             main_animal.querySelector("ul").innerHTML += an.renderAnimalName()
             // kd.renderAnimals()
         })
-         clickableLinks()
+         clickableLinksAnimals()
         })  
 
 }
 
 function createNewAnimal(){
     event.preventDefault()
-    clearContent()
+    clearContentAnimal()
     const animal = {
         name: document.getElementById("name").value,
         phylum: document.getElementById("phylum").value,
@@ -62,12 +65,12 @@ function createNewAnimal(){
         }
     }
 
-    fetch(BASE_URL + '/animals', configobj)
+    fetch(BASE_URLS + '/animals', configobj)
     .then(response => response.json())
     .then(animal => {
         const an = new An(animal)
         main_animal.querySelector("ul").innerHTML += an.displaySingleAnimal()
-        clickableLinks()
+        clickableLinksAnimals()
         createAnimalFormDiv.innerHTML = ""
         
     })
@@ -75,20 +78,22 @@ function createNewAnimal(){
 
 
 // ******* Helpers for generating HTML and adding event listeners 
-function clickableLinks(){
+function clickableLinksAnimals(){
     const an = document.querySelectorAll("#main-animal li a")
     an.forEach((element => { element.addEventListener('click', fetchSingleAnimal )})) 
     document.getElementById("add-animal-form").addEventListener('click', displayFormAnimal)
     document.getElementById("animals").addEventListener('click', fetchAllAnimal)
 }
 
-function clearContent(){
+function clearContentAnimal(){
+    main_kingdom.innerHTML = ''
+    divKingdomForm.innerHTML = ''
     const animalUl = document.querySelector("#main-animal ul")
     animalUl.innerHTML = ""
 }
 
 function displayFormAnimal(){
-    clearContent() 
+    clearContentAnimal() 
     createAnimalFormDiv.innerHTML = ""
     const html = makeAnimalForm()
     createAnimalFormDiv.innerHTML += html 

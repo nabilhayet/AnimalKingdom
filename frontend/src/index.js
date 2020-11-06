@@ -3,6 +3,9 @@ const BASE_URL = 'http://localhost:3000'
 const main = document.getElementById("main")
 const createKingdomFormDiv = document.getElementById("kingdom-form")
 
+const ulAnimal = document.querySelector("#main-animal ul")
+const divFormAnimal = document.getElementById("animal-form")
+
 
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
@@ -84,6 +87,8 @@ function clickableLinks(){
 }
 
 function clearContent(){
+    ulAnimal.innerHTML = ''
+    divFormAnimal.innerHTML = ''
     const kingdomUl = document.querySelector("#main ul")
     kingdomUl.innerHTML = ""
 }

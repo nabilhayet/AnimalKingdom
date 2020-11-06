@@ -1,52 +1,50 @@
 // ***** golbal constants so i don't need to repeat myself 
 const BASE_URL = 'http://localhost:3000'
 const main = document.getElementById("main")
-const kingdomFormDiv = document.getElementById("kingdom-form")
+const createKingdomFormDiv = document.getElementById("kingdom-form")
 
 
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
-    // getKingdoms()
-    attachClickToLinks()
+    clickableLinks()
 })
 
 // ****** requests to backend
 
-function displaySingleKingdom(){
+function fetchSingleKingdom(){
     event.preventDefault()
     const id = event.target.dataset.id 
-    clearul()
-    kingdomFormDiv.innerHTML = ''
+    clearContent()
+    createKingdomFormDiv.innerHTML = ''
     fetch(BASE_URL +  '/kingdoms/' + id)
     .then(response => response.json())
-    .then(kingdom => {
-        const kd = new Kd(kingdom)
-        main.querySelector("ul").innerHTML += kd.renderKingdom()
+    .then(kingd => {
+        const kd = new Kd(kingd)
+        main.querySelector("ul").innerHTML += kd.displaySingleKingdom()
         kd.renderULs()
 
     })
 }
 
-function getKingdoms(){
-    kingdomFormDiv.innerHTML = ""
-    clearul()
+function fetchAllKingdom(){
+    createKingdomFormDiv.innerHTML = ""
+    clearContent()
     fetch(BASE_URL + '/kingdoms')
     .then(response => response.json())
     .then(kingdoms => {
-        kingdoms.forEach(kingdom => { 
-            const kd =  new Kd(kingdom)
-            main.querySelector("ul").innerHTML += kd.renderKingdom()
+        kingdoms.forEach(kingd => { 
+            const kd =  new Kd(kingd)
+            main.querySelector("ul").innerHTML += kd.renderKingdomName()
             kd.renderULs()
         })
-        // main.querySelector("ul").innerHTML += kingdoms.map((kingdom) => displayKingdoms(kingdom)).join("")
-        attachClickToLinks()
+         clickableLinks()
         })  
 
 }
 
-function createKingdom(){
+function createNewKingdom(){
     event.preventDefault()
-    clearul()
+    clearContent()
     const kingdom = {
         name: document.getElementById("name").value,
         body_form: document.getElementById("body_form").value,
@@ -69,34 +67,33 @@ function createKingdom(){
     .then(response => response.json())
     .then(kingdom => {
         const kd = new Kd(kingdom)
-        main.querySelector("ul").innerHTML += kd.renderKingdom()
-        attachClickToLinks()
-        kingdomFormDiv.innerHTML = ""
+        main.querySelector("ul").innerHTML += kd.displaySingleKingdom()
+        clickableLinks()
+        createKingdomFormDiv.innerHTML = ""
         
     })
 }
 
 
 // ******* Helpers for generating HTML and adding event listeners 
+function clickableLinks(){
+    const kdoms = document.querySelectorAll("li a")
+    kdoms.forEach((element => { element.addEventListener('click', fetchSingleKingdom )})) 
+    document.getElementById("add-kingdom-form").addEventListener('click', displayForm)
+    document.getElementById("kingdoms").addEventListener('click', fetchAllKingdom)
+}
 
-// function addKingdomAnimals(kingdom){
-//     const ul = document.querySelector(`li#kingdom-${kingdom.id} #animals`)
-//     kingdom.animals.forEach(animal => {
-//         ul.innerHTML += `<li>${animal.name}</li>`
-//     })
-// }
-
-function clearul(){
+function clearContent(){
     const kingdomUl = document.querySelector("#main ul")
     kingdomUl.innerHTML = ""
 }
 
 function displayForm(){
-    clearul() 
-    kingdomFormDiv.innerHTML = ""
+    clearContent() 
+    createKingdomFormDiv.innerHTML = ""
     const html = makeKingdomForm()
-    kingdomFormDiv.innerHTML += html 
-    document.querySelector("form").addEventListener("submit", createKingdom)
+    createKingdomFormDiv.innerHTML += html 
+    document.querySelector("form").addEventListener("submit", createNewKingdom)
 }
 
 function makeKingdomForm(){
@@ -124,62 +121,4 @@ function makeKingdomForm(){
         </form> 
  
     `)
-}
-
-function showKingdom(kingdom){
-   return(`
-   <h3>Kingdom Name : ${kingdom.name}</h3> 
-   <h4>Body_Form : ${kingdom.body_form}</h4> 
-   <h4>Mitochondria : ${kingdom.mitochondria}</h4> 
-   <h4>Cell_Wall : ${kingdom.cell_wall}</h4> 
-   <h4>Nutrition : ${kingdom.nutrition}</h4> 
-   <h4>Nervous_System : ${kingdom.nervous_system}</h4>
-        `) 
-}
-
-function attachClickToLinks(){
-    const kingdoms = document.querySelectorAll("li a")
-
-    kingdoms.forEach((element => { element.addEventListener('click', displaySingleKingdom )})) 
-    document.getElementById("add-kingdom-form").addEventListener('click', displayForm)
-    document.getElementById("kingdoms").addEventListener('click', getKingdoms)
-}
-
-// function displayKingdoms(kingdom){
-//     return (`<li id="kingdom-${kingdom.id}">
-//                 <a href="" data-id="${kingdom.id}">${kingdom.name}</a> 
-//                 <ul id="animals">
-//                 </ul>
-//             </li>`
-//             )
-
-// }
-
-// Classes 
-class Kd {
-    constructor(kingdom){
-        this.id = kingdom.id 
-        this.name = kingdom.name 
-        this.body_form = kingdom.body_form
-        this.mitochondria = kingdom.mitochondria
-        this.nutrition = kingdom.nutrition
-        this.nervous_system = kingdom.nervous_system
-        this.animals = kingdom.animals 
-    }
-
-    renderKingdom(){
-        return (`<li id="kingdom-${this.id}">
-                     <a href="" data-id="${this.id}">${this.name}</a> 
-                     <ul id="animals">
-                       </ul>
-                    </li>`
-                )
-    }
-
-    renderULs(){
-        const ul = document.querySelector(`li#kingdom-${this.id} #animals`)
-        this.animals.forEach(animal => {
-            ul.innerHTML += `<li>${animal.name}</li>` 
-        })
-    }
 }

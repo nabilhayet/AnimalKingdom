@@ -6,7 +6,11 @@ class KingdomsController < ApplicationController
     end 
 
     def show 
-        render json: @kingdom 
+        if @kingdom 
+            render json: @kingdom 
+        else 
+            render json: {status: "error", code:3000, message: "This id does not exist" }
+        end 
     end 
 
     def create 
@@ -20,10 +24,10 @@ class KingdomsController < ApplicationController
 
     private 
     def set_kingdom
-        @kingdom = Kingdom.find(params[:id])
+        @kingdom = Kingdom.find_by_id(params[:id])
     end 
 
     def kingdom_params
-        params.require(:kingdom).permit(:Body_Form, :Mitochondria, :Cell_Wall, :Nutrition, :Nervous_System)
+        params.require(:kingdom).permit(:name, :body_form, :mitochondria, :cell_wall, :nutrition, :nervous_system)
     end 
 end

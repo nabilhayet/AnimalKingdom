@@ -77,7 +77,7 @@ function createNewKingdom(){
 
 // ******* Helpers for generating HTML and adding event listeners 
 function clickableLinks(){
-    const kdoms = document.querySelectorAll("li a")
+    const kdoms = document.querySelectorAll("#main li a")
     kdoms.forEach((element => { element.addEventListener('click', fetchSingleKingdom )})) 
     document.getElementById("add-kingdom-form").addEventListener('click', displayForm)
     document.getElementById("kingdoms").addEventListener('click', fetchAllKingdom)

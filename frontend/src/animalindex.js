@@ -97,12 +97,27 @@ function displayFormAnimal(){
     createAnimalFormDiv.innerHTML = ""
     const html = makeAnimalForm()
     createAnimalFormDiv.innerHTML += html 
-    document.querySelector("form").addEventListener("submit", createNewAnimal)
+    document.querySelector("form#animal").addEventListener("submit", createNewAnimal)
 }
+
+function getOptions(){
+    fetch(BASE_URLS + '/kingdoms')
+    .then(response => response.json())
+    .then(animals => {
+        animals.forEach(ani => { 
+            // const an =  new An(ani)
+            return (`
+            <option value="ani.name">${ani.name}</option>
+            `)
+          
+        })
+        clickableLinksAnimals()
+       })  
+    }
 
 function makeAnimalForm(){
  return (`
-        <form>
+        <form id="animal">
             Animal Name : <input type="text" id="name">
             <br>
             <br>
@@ -115,7 +130,9 @@ function makeAnimalForm(){
             Species : <input type="text" id="species">
             <br>
             <br>
-            Kingdom : <input type="text" id="kingdom_id">
+            Kingdom : <select id="king" name="king">
+                        "${getOptions()}"
+                      </select>
             <br>
             <br>
             <input type="submit">

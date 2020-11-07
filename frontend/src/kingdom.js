@@ -1,4 +1,5 @@
 class Kd {
+    static all = []
     constructor(kingdom){
         this.id = kingdom.id 
         this.name = kingdom.name 
@@ -8,6 +9,7 @@ class Kd {
         this.nutrition = kingdom.nutrition
         this.nervous_system = kingdom.nervous_system
         this.animals = kingdom.animals 
+        Kd.all.push(this)
     }
 
     renderKingdomName(){

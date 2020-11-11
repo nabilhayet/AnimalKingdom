@@ -11,6 +11,8 @@ class An {
     renderAnimalName(){
         return (`<li id="animal-${this.id}">
                     <a href="" data-id="${this.id}">${this.name}</a> 
+                    <button id="delete" data-id="${this.id}">Delete</button>
+                    <button id="update" data-id="${this.id}">Update</button>
                 </li>`
                 )
     }

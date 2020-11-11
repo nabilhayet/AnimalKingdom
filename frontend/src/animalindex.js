@@ -14,6 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ****** requests to backend
 
+// function removeAnimal(){
+//     event.preventDefault()
+//     const id =  event.target.dataset.id 
+//     const configobj = {
+//         method: "DELETE",
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Accept': 'application/json'
+//         }
+//     }
+//     fetch(BASE_URLS +  '/animals/' + id, configobj)
+//     .then(event.target.parentElement.remove())
+// }
+
 function fetchSingleAnimal(){
     event.preventDefault()
     const id = event.target.dataset.id 
@@ -78,11 +92,21 @@ function createNewAnimal(){
 
 
 // ******* Helpers for generating HTML and adding event listeners 
+
+function updateAnimal(){
+    event.preventDefault()
+    const id = event.target.dataset.id 
+
+    fetch()
+}
+
 function clickableLinksAnimals(){
     const an = document.querySelectorAll("#main-animal li a")
     an.forEach((element => { element.addEventListener('click', fetchSingleAnimal )})) 
     document.getElementById("add-animal-form").addEventListener('click', displayFormAnimal)
     document.getElementById("animals").addEventListener('click', fetchAllAnimal)
+    // document.querySelectorAll("#delete").forEach(animal => addEventListener('click', removeAnimal))
+    // document.querySelectorAll("#update").forEach(animal => addEventListener('click', updateAnimal))
 }
 
 function clearContentAnimal(){

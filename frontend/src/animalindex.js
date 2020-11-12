@@ -93,11 +93,64 @@ function createNewAnimal(){
 
 // ******* Helpers for generating HTML and adding event listeners 
 
+function editAnimal(){
+    event.preventDefault()
+    const id = event.target.dataset.id
+    const animal = {
+        name: event.target.querySelector("#name").value,
+        phylum: event.target.querySelector("#phylum").value,
+        order: event.target.querySelector("#order").value,
+        species: event.target.querySelector("#species").value,
+        kingdom_id : event.target.querySelector("#kingdom_id").value
+    }
+    const configobj = {
+        method: "PATCH",
+        body: JSON.stringify(animal),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+
+    fetch(BASE_URLS+ `/animals/${id}`, configobj)
+    .then(response => response.json())
+    .then(animal => {
+
+    })
+
+}
+
 function updateAnimal(){
     event.preventDefault()
     const id = event.target.dataset.id 
 
-    fetch()
+    fetch(BASE_URLS + `/animals/${id}`)
+    .then(response => response.json())
+    .then(animal => {
+
+    const html = `
+    <form data-id=${id}>
+            Animal Name : <input type="text" id="name" value=${animal.name}>
+            <br>
+            <br>
+            Phylum : <input type="text" id="phylum" value=${animal.phylum}>
+            <br>
+            <br>
+            Order : <input type="text" id="order" value=${animal.order}>
+            <br>
+            <br>
+            Species : <input type="text" id="species" value=${animal.species}>
+            <br>
+            <br>
+            Kingdom : <select id="king" name="king">
+                      </select>
+            <br>
+            <br>
+            <input type="submit">
+        </form> `
+    })
+    createAnimalFormDiv.innerHTML = html 
+    document.querySelector("form").addEventListener('submit', editAnimal)
 }
 
 function clickableLinksAnimals(){
@@ -105,8 +158,8 @@ function clickableLinksAnimals(){
     an.forEach((element => { element.addEventListener('click', fetchSingleAnimal )})) 
     document.getElementById("add-animal-form").addEventListener('click', displayFormAnimal)
     document.getElementById("animals").addEventListener('click', fetchAllAnimal)
-    // document.querySelectorAll("#delete").forEach(animal => addEventListener('click', removeAnimal))
-    // document.querySelectorAll("#update").forEach(animal => addEventListener('click', updateAnimal))
+    // document.querySelectorAll("#delete").forEach(animal => animal.addEventListener('click', removeAnimal))
+    // document.querySelectorAll("#update").forEach(animal => animal.addEventListener('click', updateAnimal))
 }
 
 function clearContentAnimal(){

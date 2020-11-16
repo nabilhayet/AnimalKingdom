@@ -15,12 +15,14 @@ class Kd {
     renderKingdomName(){
         return (`<li id="kingdom-${this.id}">
                     <a href="" data-id="${this.id}">${this.name}</a> 
-                </li>`
+                </li>
+               `
                 )
     }
 
     renderAnimals(){
-        const ul = document.querySelector(`li#kingdom-${this.id} #animals`)
+        // const ul = document.querySelector(`li#kingdom-${this.id} #animals`)
+        const ul = document.querySelector("div#main ul ul#animals")
         this.animals.forEach(animal => {
             ul.innerHTML += `<li>${animal.name}</li>` 
         })
@@ -33,7 +35,10 @@ class Kd {
         <h4>Cell Wall : "${this.cell_wall}"</h4>
         <h4>Nutrition : "${this.nutrition}"</h4>
         <h4>Nervous System : "${this.nervous_system}"</h4>
+        <hr>
+        <h4>Animals</h4> 
         <ul id="animals">
-          </ul>`)
+        </ul>
+        `)
     }
 }

@@ -82,10 +82,9 @@ function createNewAnimal(){
     fetch(BASE_URLS + '/animals', configobj)
     .then(response => response.json())
     .then(animal => {
-        const an = new An(animal)
-        main_animal.querySelector("ul").innerHTML += an.displaySingleAnimal()
+        const anm = new An(animal)
+        main_animal.querySelector("ul").innerHTML += anm.displaySingleAnimal()
         clickableLinksAnimals()
-        createAnimalFormDiv.innerHTML = ""
         
     })
 }
@@ -95,6 +94,7 @@ function createNewAnimal(){
 
 function editAnimal(){
     event.preventDefault()
+    clearContentAnimal()
     const id = event.target.dataset.id
     const animal = {
         name: event.target.querySelector("#name").value,
@@ -115,6 +115,9 @@ function editAnimal(){
     fetch(BASE_URLS+ `/animals/${id}`, configobj)
     .then(response => response.json())
     .then(animal => {
+        const an = new An(animal)
+        main_animal.querySelector("ul").innerHTML += an.displaySingleAnimal()
+        clickableLinksAnimals()
 
     })
 
@@ -158,8 +161,8 @@ function clickableLinksAnimals(){
     an.forEach((element => { element.addEventListener('click', fetchSingleAnimal )})) 
     document.getElementById("add-animal-form").addEventListener('click', displayFormAnimal)
     document.getElementById("animals").addEventListener('click', fetchAllAnimal)
-    // document.querySelectorAll("#delete").forEach(animal => animal.addEventListener('click', removeAnimal))
-    // document.querySelectorAll("#update").forEach(animal => animal.addEventListener('click', updateAnimal))
+    document.querySelectorAll("#delete").forEach(animal => animal.addEventListener('click', removeAnimal))
+    document.querySelectorAll("#update").forEach(animal => animal.addEventListener('click', updateAnimal))
 }
 
 function clearContentAnimal(){
@@ -180,11 +183,11 @@ function displayFormAnimal(){
 function getOptions(){
     fetch(BASE_URLS + '/kingdoms')
     .then(response => response.json())
-    .then(animals => {
-        animals.forEach(ani => { 
-            // const an =  new An(ani)
+    .then(kingdoms => {
+        kingdoms.forEach(k => { 
+            debugger
             return (`
-            <option value="ani.name">${ani.name}</option>
+            <option value="k.name">${k.name}</option>
             `)
           
         })

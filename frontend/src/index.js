@@ -38,7 +38,7 @@ function fetchAllKingdom(){
         kingdoms.forEach(kingd => { 
             const kd =  new Kd(kingd)
             main.querySelector("ul").innerHTML += kd.renderKingdomName()
-            kd.renderAnimals()
+            // kd.renderAnimals()
         })
          clickableLinks()
         })  

@@ -177,24 +177,27 @@ function displayFormAnimal(){
     clearContentAnimal() 
     createAnimalFormDiv.innerHTML = ""
     const html = makeAnimalForm()
+    getOptions()
     createAnimalFormDiv.innerHTML += html 
+    debugger
     document.querySelector("form#animal").addEventListener("submit", createNewAnimal)
 }
 
-function getOptions(){
-    fetch(BASE_URLS + '/kingdoms')
-    .then(response => response.json())
-    .then(kingdoms => {
-        kingdoms.forEach(k => { 
-            debugger
-            return (`
-            <option value="k.name">${k.name}</option>
-            `)
+// function getOptions(){
+//     fetch(BASE_URLS + '/kingdoms')
+//     .then(response => response.json())
+//     .then(kingdoms => {
+//         kingdoms.map(k => { 
+//             return (`
+//             <option value="k.name">${k.name}</option>
+//             `)
           
-        })
-        clickableLinksAnimals()
-       })  
-    }
+//         })
+//         clickableLinksAnimals()
+//        })  
+//     }
+
+
 
 function makeAnimalForm(){
  return (`
@@ -212,7 +215,6 @@ function makeAnimalForm(){
             <br>
             <br>
             Kingdom : <select id="king" name="king">
-                        "${getOptions()}"
                       </select>
             <br>
             <br>
@@ -220,4 +222,16 @@ function makeAnimalForm(){
         </form> 
  
     `)
+}
+
+function getOptions(){
+    const selectTag = document.getElementById("king")
+    const a = Kd.all 
+    for(let i=0;i<a.length;i++){
+        const b = a[i]
+        const option =  document.createElement("option")
+        option.textContent = b.name 
+        option.value = b.name 
+        selectTag.appendChild(option)
+    }
 }

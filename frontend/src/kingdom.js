@@ -1,5 +1,5 @@
 class Kd {
-    static all = []
+   
     constructor(kingdom){
         this.id = kingdom.id 
         this.name = kingdom.name 
@@ -11,6 +11,7 @@ class Kd {
         this.animals = kingdom.animals 
         Kd.all.push(this)
     }
+   
 
     renderKingdomName(){
         return (`<li id="kingdom-${this.id}">
@@ -42,3 +43,4 @@ class Kd {
         `)
     }
 }
+Kd.all = []

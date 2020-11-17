@@ -60,7 +60,7 @@ function fetchAllAnimal(){
 }
 
 function createNewAnimal(){
-    debugger
+    const e = document.querySelector("select#king")
     event.preventDefault()
     clearContentAnimal()
     const animal = {
@@ -68,7 +68,7 @@ function createNewAnimal(){
         phylum: document.getElementById("phylum").value,
         order: document.getElementById("order").value,
         species: document.getElementById("species").value,
-        kingdom_id: document.getElementById("kingdom_id").id 
+        kingdom_id: e.options[e.selectedIndex].id
     }
 
     const configobj = {
@@ -180,7 +180,6 @@ function displayFormAnimal(){
     const html = makeAnimalForm()
     createAnimalFormDiv.innerHTML += html 
     getOptions()
-    debugger
     document.querySelector("form#animal").addEventListener("submit", createNewAnimal)
 }
 

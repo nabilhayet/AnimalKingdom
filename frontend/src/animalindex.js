@@ -60,6 +60,7 @@ function fetchAllAnimal(){
 }
 
 function createNewAnimal(){
+    debugger
     event.preventDefault()
     clearContentAnimal()
     const animal = {
@@ -67,7 +68,7 @@ function createNewAnimal(){
         phylum: document.getElementById("phylum").value,
         order: document.getElementById("order").value,
         species: document.getElementById("species").value,
-        kingdom_id: document.getElementById("kingdom_id").value
+        kingdom_id: document.getElementById("kingdom_id").id 
     }
 
     const configobj = {
@@ -177,27 +178,11 @@ function displayFormAnimal(){
     clearContentAnimal() 
     createAnimalFormDiv.innerHTML = ""
     const html = makeAnimalForm()
-    getOptions()
     createAnimalFormDiv.innerHTML += html 
+    getOptions()
     debugger
     document.querySelector("form#animal").addEventListener("submit", createNewAnimal)
 }
-
-// function getOptions(){
-//     fetch(BASE_URLS + '/kingdoms')
-//     .then(response => response.json())
-//     .then(kingdoms => {
-//         kingdoms.map(k => { 
-//             return (`
-//             <option value="k.name">${k.name}</option>
-//             `)
-          
-//         })
-//         clickableLinksAnimals()
-//        })  
-//     }
-
-
 
 function makeAnimalForm(){
  return (`
@@ -225,13 +210,23 @@ function makeAnimalForm(){
 }
 
 function getOptions(){
-    const selectTag = document.getElementById("king")
-    const a = Kd.all 
-    for(let i=0;i<a.length;i++){
-        const b = a[i]
-        const option =  document.createElement("option")
-        option.textContent = b.name 
-        option.value = b.name 
-        selectTag.appendChild(option)
-    }
+  
+    fetch(BASE_URLS + '/kingdoms')
+        .then(response => response.json())
+        .then(kingdoms => {
+            kingdoms.forEach(k => { 
+                const an = new Kd(k)
+            })
+            const allKing = Kd.all()
+            const value = document.querySelector("select#king")
+            for(let i=0;i<allKing.length;i++){
+                const b = allKing[i]
+                const option =  document.createElement("option")
+                option.textContent = b.name 
+                option.value = b.name 
+                option.id = i+1 
+                value.appendChild(option)
+            }
+        })
+   
 }

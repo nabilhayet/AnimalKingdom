@@ -94,6 +94,7 @@ function createNewAnimal(){
 // ******* Helpers for generating HTML and adding event listeners 
 
 function editAnimal(){
+    debugger
     createAnimalFormDiv.innerHTML= ''
     event.preventDefault()
     clearContentAnimal()
@@ -148,6 +149,7 @@ function updateAnimal(){
             <br>
             <br>
             Kingdom : <select id="king" name="king">
+                        <option value="${animal.kingdom.name}" id="${animal.kingdom.id}">${animal.kingdom.name}</option>
                       </select>
             <br>
             <br>

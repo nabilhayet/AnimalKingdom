@@ -1,3 +1,3 @@
 class Animal < ApplicationRecord
-    belong_to :kingdom 
+    belongs_to :kingdom 
 end

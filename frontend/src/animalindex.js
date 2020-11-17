@@ -14,19 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ****** requests to backend
 
-// function removeAnimal(){
-//     event.preventDefault()
-//     const id =  event.target.dataset.id 
-//     const configobj = {
-//         method: "DELETE",
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Accept': 'application/json'
-//         }
-//     }
-//     fetch(BASE_URLS +  '/animals/' + id, configobj)
-//     .then(event.target.parentElement.remove())
-// }
+function removeAnimal(){
+    event.preventDefault()
+    const id =  event.target.dataset.id 
+    const configobj = {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+    fetch(BASE_URLS +  '/animals/' + id, configobj)
+    .then(event.target.parentElement.remove())
+}
 
 function fetchSingleAnimal(){
     event.preventDefault()
@@ -93,6 +93,7 @@ function createNewAnimal(){
 // ******* Helpers for generating HTML and adding event listeners 
 
 function editAnimal(){
+    createAnimalFormDiv.innerHTML= ''
     event.preventDefault()
     clearContentAnimal()
     const id = event.target.dataset.id
@@ -101,7 +102,7 @@ function editAnimal(){
         phylum: event.target.querySelector("#phylum").value,
         order: event.target.querySelector("#order").value,
         species: event.target.querySelector("#species").value,
-        kingdom_id : event.target.querySelector("#kingdom_id").value
+        // kingdom_id : event.target.querySelector("#kingdom_id").value
     }
     const configobj = {
         method: "PATCH",
@@ -112,7 +113,7 @@ function editAnimal(){
         }
     }
 
-    fetch(BASE_URLS+ `/animals/${id}`, configobj)
+    fetch(BASE_URLS +  '/animals/' + id, configobj)
     .then(response => response.json())
     .then(animal => {
         const an = new An(animal)
@@ -126,7 +127,7 @@ function editAnimal(){
 function updateAnimal(){
     event.preventDefault()
     const id = event.target.dataset.id 
-
+    clearContentAnimal()
     fetch(BASE_URLS + `/animals/${id}`)
     .then(response => response.json())
     .then(animal => {
@@ -151,9 +152,9 @@ function updateAnimal(){
             <br>
             <input type="submit">
         </form> `
-    })
     createAnimalFormDiv.innerHTML = html 
     document.querySelector("form").addEventListener('submit', editAnimal)
+    })
 }
 
 function clickableLinksAnimals(){

@@ -1,5 +1,5 @@
 class AnimalsController < ApplicationController
-    before_action :set_animal, only: [:show]
+    before_action :set_animal, only: [:show, :update, :destroy]
     def index 
         animals = Animal.all 
         render json: animals 
@@ -20,6 +20,18 @@ class AnimalsController < ApplicationController
         else 
             render json: animal.errors 
         end 
+    end 
+
+    def update
+        if @animal.update(animal_params)
+            render json: @animal
+        else 
+            render json: @animal.errors 
+        end 
+    end 
+
+    def destroy
+        @animal.destroy
     end 
 
     private 

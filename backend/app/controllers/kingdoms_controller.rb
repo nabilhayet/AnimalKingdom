@@ -1,8 +1,8 @@
 class KingdomsController < ApplicationController
     before_action :set_kingdom, only: [:show]
     def index 
-        kingdoms = Kingdom.all 
-        render json: kingdoms 
+        @kingdoms = Kingdom.all 
+        render json: @kingdoms 
     end 
 
     def show 
@@ -14,11 +14,11 @@ class KingdomsController < ApplicationController
     end 
 
     def create 
-        kingdom = Kingdom.new(kingdom_params)
-        if kingdom.save 
-            render json: kingdom 
+        @kingdom = Kingdom.new(kingdom_params)
+        if @kingdom.save 
+            render json: @kingdom 
         else 
-            render json: kingdom.errors 
+            render json: @kingdom.errors 
         end 
     end 
 

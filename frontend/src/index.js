@@ -10,6 +10,7 @@ const divFormAnimal = document.getElementById("animal-form")
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
     clickableLinks()
+    // getSelectOptions()
 })
 
 // ****** requests to backend
@@ -35,6 +36,8 @@ function fetchAllKingdom(){
     fetch(BASE_URL + '/kingdoms')
     .then(response => response.json())
     .then(kingdoms => {
+        debugger
+        Kd.all().length=0 
         kingdoms.forEach(kingd => { 
             const kd =  new Kd(kingd)
             main.querySelector("ul").innerHTML += kd.renderKingdomName()
@@ -124,6 +127,5 @@ function makeKingdomForm(){
             <br>
             <input type="submit">
         </form> 
- 
-    `)
+        `)
 }

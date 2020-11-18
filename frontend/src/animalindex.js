@@ -9,8 +9,9 @@ const divKingdomForm = document.getElementById("kingdom-form")
 
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
+    fetchAllKingdoms()
     clickableLinksAnimals()
-    getSelectOptions()
+    
 })
 
 // ****** requests to backend
@@ -62,6 +63,7 @@ function createNewAnimal(){
     const e = document.querySelector("select#king")
     event.preventDefault()
     clearContentAnimal()
+    createAnimalFormDiv.innerHTML = ''
     const animal = {
         name: document.getElementById("name").value,
         phylum: document.getElementById("phylum").value,
@@ -130,36 +132,39 @@ function updateAnimal(){
     const id = event.target.dataset.id 
     clearContentAnimal()
     createAnimalFormDiv.innerHTML = ''
-    fetch(BASE_URLS + `/animals/${id}`)
-    .then(response => response.json())
-    .then(animal => {
-    const html = updateAnimalForm(animal)
-    createAnimalFormDiv.innerHTML = html 
-    const allKing = Kd.all()
-        const v = document.querySelector("select#king")
-        const c = v.options[v.selectedIndex].value 
+        fetch(BASE_URLS + `/animals/${id}`)
+        .then(response => response.json())
+        .then(animal => {
+            const html = updateAnimalForm(animal)
+            createAnimalFormDiv.innerHTML = html 
+            const allKing = Kd.all()
+            const v = document.querySelector("select#king")
+            const c = v.options[v.selectedIndex].value 
+
         for(let i=0;i<allKing.length;i++){
             const b = allKing[i]
+
             if(b.name !== c){
-            const option =  document.createElement("option")
-            option.textContent = b.name 
-            option.value = b.name 
-            option.id = i+1 
-            v.appendChild(option)
+                const option =  document.createElement("option")
+                option.textContent = b.name 
+                option.value = b.name 
+                option.id = i+1 
+                v.appendChild(option)
             }
         }
     document.querySelector("form").addEventListener('submit', editAnimal)
    })
 }
-function getSelectOptions(){
-    fetch(BASE_URLS + '/kingdoms')
-    .then(response => response.json())
-    .then(kingdoms => {
-       kingdoms.forEach(k => { 
-           new Kd(k)
-       })
-    })
-}
+
+// function getSelectOptions(){
+//     fetch(BASE_URLS + '/kingdoms')
+//     .then(response => response.json())
+//     .then(kingdoms => {
+//        kingdoms.forEach(k => { 
+//            new Kd(k)
+//        })
+//     })
+// }
 function updateAnimalForm(animal){
     return (` <form data-id=${animal.id}>
         Animal Name : <input type="text" id="name" value=${animal.name}>
@@ -235,12 +240,6 @@ function makeAnimalForm(){
 }
 
 function getOptions(){
-  fetch(BASE_URLS + '/kingdoms')
-        .then(response => response.json())
-        .then(kingdoms => {
-            kingdoms.forEach(k => { 
-                const an = new Kd(k)
-            })
             const allKing = Kd.all()
             const value = document.querySelector("select#king")
             for(let i=0;i<allKing.length;i++){
@@ -251,5 +250,14 @@ function getOptions(){
                 option.id = i+1 
                 value.appendChild(option)
             }
-        })
    }
+
+   function fetchAllKingdoms(){
+    fetch(BASE_URLS + '/kingdoms')
+    .then(response => response.json())
+    .then(kingdoms => {
+        kingdoms.forEach(k => { 
+            const an = new Kd(k)
+        })
+   })
+}

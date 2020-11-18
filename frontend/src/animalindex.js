@@ -130,34 +130,66 @@ function updateAnimal(){
     event.preventDefault()
     const id = event.target.dataset.id 
     clearContentAnimal()
+    createAnimalFormDiv.innerHTML = ''
     fetch(BASE_URLS + `/animals/${id}`)
     .then(response => response.json())
     .then(animal => {
 
-    const html = `
-    <form data-id=${id}>
-            Animal Name : <input type="text" id="name" value=${animal.name}>
-            <br>
-            <br>
-            Phylum : <input type="text" id="phylum" value=${animal.phylum}>
-            <br>
-            <br>
-            Order : <input type="text" id="order" value=${animal.order}>
-            <br>
-            <br>
-            Species : <input type="text" id="species" value=${animal.species}>
-            <br>
-            <br>
-            Kingdom : <select id="king" name="king">
-                        <option value="${animal.kingdom.name}" id="${animal.kingdom.id}">${animal.kingdom.name}</option>
-                      </select>
-            <br>
-            <br>
-            <input type="submit">
-        </form> `
+    const html = updateAnimalForm(animal)
     createAnimalFormDiv.innerHTML = html 
+    getSelectOptions(animal)
     document.querySelector("form").addEventListener('submit', editAnimal)
+   })
+}
+
+function getSelectOptions(animal){
+    // const a = animal.kingdom.name 
+    fetch(BASE_URLS + '/kingdoms')
+    .then(response => response.json())
+    .then(kingdoms => {
+        debugger
+       // kingdoms.forEach(k => { 
+       //     const an = new Kd(k)
+       // })
+        const allKing = Kd.all()
+        const v = document.querySelector("select#king")
+        const c = v.options[v.selectedIndex].value 
+        for(let i=0;i<allKing.length;i++){
+            const b = allKing[i]
+            if(b.name !== c){
+            const option =  document.createElement("option")
+            option.textContent = b.name 
+            option.value = b.name 
+            option.id = i+1 
+            v.appendChild(option)
+            }
+        }
     })
+
+}
+
+function updateAnimalForm(animal){
+    return (` <form data-id=${animal.id}>
+        Animal Name : <input type="text" id="name" value=${animal.name}>
+        <br>
+        <br>
+        Phylum : <input type="text" id="phylum" value=${animal.phylum}>
+        <br>
+        <br>
+        Order : <input type="text" id="order" value=${animal.order}>
+        <br>
+        <br>
+        Species : <input type="text" id="species" value=${animal.species}>
+        <br>
+        <br>
+        Kingdom : <select id="king" name="king">
+                <option value="${animal.kingdom.name}" id="${animal.kingdom.id}">${animal.kingdom.name}</option>
+              </select>
+        <br>
+        <br>
+        <input type="submit">
+        </form>
+        `)
 }
 
 function clickableLinksAnimals(){

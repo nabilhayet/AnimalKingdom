@@ -10,6 +10,7 @@ const divKingdomForm = document.getElementById("kingdom-form")
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
     clickableLinksAnimals()
+    getSelectOptions()
 })
 
 // ****** requests to backend
@@ -38,7 +39,6 @@ function fetchSingleAnimal(){
     .then(ani => {
         const an = new An(ani)
         main_animal.querySelector("ul").innerHTML += an.displaySingleAnimal()
-        // kd.renderAnimals()
 
     })
 }
@@ -52,7 +52,6 @@ function fetchAllAnimal(){
         animals.forEach(ani => { 
             const an =  new An(ani)
             main_animal.querySelector("ul").innerHTML += an.renderAnimalName()
-            // kd.renderAnimals()
         })
          clickableLinksAnimals()
         })  
@@ -94,7 +93,7 @@ function createNewAnimal(){
 // ******* Helpers for generating HTML and adding event listeners 
 
 function editAnimal(){
-    debugger
+    const e = document.querySelector("select#king")
     createAnimalFormDiv.innerHTML= ''
     event.preventDefault()
     clearContentAnimal()
@@ -104,7 +103,7 @@ function editAnimal(){
         phylum: event.target.querySelector("#phylum").value,
         order: event.target.querySelector("#order").value,
         species: event.target.querySelector("#species").value,
-        // kingdom_id : event.target.querySelector("#kingdom_id").value
+        kingdom_id: e.options[e.selectedIndex].id
     }
     const configobj = {
         method: "PATCH",
@@ -134,24 +133,9 @@ function updateAnimal(){
     fetch(BASE_URLS + `/animals/${id}`)
     .then(response => response.json())
     .then(animal => {
-
     const html = updateAnimalForm(animal)
     createAnimalFormDiv.innerHTML = html 
-    getSelectOptions(animal)
-    document.querySelector("form").addEventListener('submit', editAnimal)
-   })
-}
-
-function getSelectOptions(animal){
-    // const a = animal.kingdom.name 
-    fetch(BASE_URLS + '/kingdoms')
-    .then(response => response.json())
-    .then(kingdoms => {
-        debugger
-       // kingdoms.forEach(k => { 
-       //     const an = new Kd(k)
-       // })
-        const allKing = Kd.all()
+    const allKing = Kd.all()
         const v = document.querySelector("select#king")
         const c = v.options[v.selectedIndex].value 
         for(let i=0;i<allKing.length;i++){
@@ -164,10 +148,18 @@ function getSelectOptions(animal){
             v.appendChild(option)
             }
         }
-    })
-
+    document.querySelector("form").addEventListener('submit', editAnimal)
+   })
 }
-
+function getSelectOptions(){
+    fetch(BASE_URLS + '/kingdoms')
+    .then(response => response.json())
+    .then(kingdoms => {
+       kingdoms.forEach(k => { 
+           new Kd(k)
+       })
+    })
+}
 function updateAnimalForm(animal){
     return (` <form data-id=${animal.id}>
         Animal Name : <input type="text" id="name" value=${animal.name}>
@@ -243,8 +235,7 @@ function makeAnimalForm(){
 }
 
 function getOptions(){
-  
-    fetch(BASE_URLS + '/kingdoms')
+  fetch(BASE_URLS + '/kingdoms')
         .then(response => response.json())
         .then(kingdoms => {
             kingdoms.forEach(k => { 
@@ -261,5 +252,4 @@ function getOptions(){
                 value.appendChild(option)
             }
         })
-   
-}
+   }

@@ -36,17 +36,38 @@ function fetchAllKingdom(){
     fetch(BASE_URL + '/kingdoms')
     .then(response => response.json())
     .then(kingdoms => {
-        debugger
         Kd.all().length=0 
         kingdoms.forEach(kingd => { 
             const kd =  new Kd(kingd)
             main.querySelector("ul").innerHTML += kd.renderKingdomName()
-            // kd.renderAnimals()
+            
         })
+        const html = `<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">`
+        createKingdomFormDiv.innerHTML = html 
          clickableLinks()
         })  
 
 }
+
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("ul");
+    li = ul.getElementsByTagName('li');
+  
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByTagName("a")[0];
+      txtValue = a.textContent || a.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
 
 function createNewKingdom(){
     event.preventDefault()

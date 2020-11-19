@@ -1,0 +1,26 @@
+body {
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+html {
+    background-color: burlywood;
+}
+
+header {
+    width: cover;
+    height: 120px;
+    background-color: darkslategray;
+}
+
+footer {
+    width: cover;
+    height: 120px;
+    background-color: darkslategray;
+}
+
+.img-ak {
+    width: 840px;
+    height: 400px;
+    position: center;
+}

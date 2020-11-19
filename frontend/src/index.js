@@ -145,7 +145,7 @@ function makeKingdomForm(){
             Nervous_System : <input type="text" id="nervous_system">
             <br>
             <br>
-            <input type="submit">
+            <button class="btn">submit</button> 
         </form> 
         `)
 }

@@ -233,7 +233,7 @@ function makeAnimalForm(){
                       </select>
             <br>
             <br>
-            <input type="submit">
+            <button class="btn">submit</button> 
         </form> 
  
     `)

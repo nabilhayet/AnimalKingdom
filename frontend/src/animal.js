@@ -22,7 +22,7 @@ class An {
         <h4>Phylum : "${this.phylum}"</h4>
         <h4>Order : "${this.order}"</h4>
         <h4>Species : "${this.species}"</h4>
-        <h4>Kingdom Name : "${this.kingdom}"</h4>
+        <h4>Kingdom Name : "${this.kingdom.name}"</h4>
         `)
     }
 }

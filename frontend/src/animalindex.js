@@ -9,12 +9,23 @@ const divKingdomForm = document.getElementById("kingdom-form")
 
 // ***** startup routine => make fetch to get initial data
 document.addEventListener("DOMContentLoaded", () => {
-    fetchAllKingdoms()
+    // fetchAllKingdoms()
     clickableLinksAnimals()
     
 })
 
 // ****** requests to backend
+
+// function fetchAllKingdoms(){
+//     fetch(BASE_URLS + '/kingdoms')
+//     .then(response => response.json())
+//     .then(kingdoms => {
+//         Kd.all().length=0 
+//         kingdoms.forEach(k => { 
+//             const an = new Kd(k)
+//         })
+//    })
+// }
 
 function removeAnimal(){
     event.preventDefault()
@@ -63,12 +74,11 @@ function createNewAnimal(){
     const e = document.querySelector("select#king")
     event.preventDefault()
     clearContentAnimal()
-    createAnimalFormDiv.innerHTML = ''
     const animal = {
-        name: document.getElementById("name").value,
-        phylum: document.getElementById("phylum").value,
-        order: document.getElementById("order").value,
-        species: document.getElementById("species").value,
+        name: document.querySelector("form#animal #name").value,
+        phylum: document.querySelector("form#animal #phylum").value,
+        order: document.querySelector("form#animal #order").value,
+        species: document.querySelector("form#animal #species").value,
         kingdom_id: e.options[e.selectedIndex].id
     }
 
@@ -87,7 +97,7 @@ function createNewAnimal(){
         const anm = new An(animal)
         main_animal.querySelector("ul").innerHTML += anm.displaySingleAnimal()
         clickableLinksAnimals()
-        
+        createAnimalFormDiv.innerHTML = ""
     })
 }
 
@@ -156,15 +166,6 @@ function updateAnimal(){
    })
 }
 
-// function getSelectOptions(){
-//     fetch(BASE_URLS + '/kingdoms')
-//     .then(response => response.json())
-//     .then(kingdoms => {
-//        kingdoms.forEach(k => { 
-//            new Kd(k)
-//        })
-//     })
-// }
 function updateAnimalForm(animal){
     return (` <form data-id=${animal.id}>
         Animal Name : <input type="text" id="name" value=${animal.name}>
@@ -240,24 +241,24 @@ function makeAnimalForm(){
 }
 
 function getOptions(){
-            const allKing = Kd.all()
-            const value = document.querySelector("select#king")
-            for(let i=0;i<allKing.length;i++){
-                const b = allKing[i]
-                const option =  document.createElement("option")
-                option.textContent = b.name 
-                option.value = b.name 
-                option.id = i+1 
-                value.appendChild(option)
-            }
-   }
-
-   function fetchAllKingdoms(){
     fetch(BASE_URLS + '/kingdoms')
     .then(response => response.json())
     .then(kingdoms => {
+        Kd.all().length=0 
         kingdoms.forEach(k => { 
             const an = new Kd(k)
         })
-   })
+    const allKing = Kd.all()
+    const v = document.querySelector("select#king")
+        for(let i=0; i < allKing.length; i++){
+            const b = allKing[i]
+            const option =  document.createElement("option")
+            option.textContent = b.name 
+            option.value = b.name 
+            option.id = i+1 
+            v.appendChild(option)
+        }
+    })
 }
+
+  

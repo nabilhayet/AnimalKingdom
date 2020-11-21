@@ -147,6 +147,13 @@ function updateAnimal(){
         .then(animal => {
             const html = updateAnimalForm(animal)
             createAnimalFormDiv.innerHTML = html 
+            fetch(BASE_URLS + '/kingdoms')
+            .then(response => response.json())
+            .then(kingdoms => {
+                Kd.all().length=0 
+                kingdoms.forEach(k => { 
+                    const an = new Kd(k)
+                })
             const allKing = Kd.all()
             const v = document.querySelector("select#king")
             const c = v.options[v.selectedIndex].value 
@@ -162,6 +169,7 @@ function updateAnimal(){
                 v.appendChild(option)
             }
         }
+    })
     document.querySelector("form").addEventListener('submit', editAnimal)
    })
 }

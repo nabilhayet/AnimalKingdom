@@ -61,13 +61,39 @@ function fetchAllAnimal(){
     fetch(BASE_URLS + '/animals')
     .then(response => response.json())
     .then(animals => {
+        An.collection.length=0 
         animals.forEach(ani => { 
             const an =  new An(ani)
             main_animal.querySelector("ul").innerHTML += an.renderAnimalName()
         })
+        const html = `<button id="sort">sort</button>`
+        createAnimalFormDiv.innerHTML = html 
+        document.getElementById("sort").addEventListener('click', myFunc)
          clickableLinksAnimals()
         })  
 
+}
+
+function myFunc(){
+    createAnimalFormDiv.innerHTML = ""
+    clearContentAnimal()
+    An.collection.sort(compare)
+    An.collection.forEach(a => {
+        main_animal.querySelector("ul").innerHTML += a.renderAnimalName()
+ })
+}
+
+function compare(a,b){
+    const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+
+  let comparison = 0;
+  if (nameA > nameB) {
+    comparison = 1;
+  } else if (nameA < nameB) {
+    comparison = -1;
+  }
+  return comparison * -1;
 }
 
 function createNewAnimal(){

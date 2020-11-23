@@ -1,4 +1,5 @@
 class An {
+    static collection = []
     constructor(animal){
         this.id = animal.id 
         this.name = animal.name 
@@ -6,7 +7,14 @@ class An {
         this.order = animal.order
         this.species = animal.species
         this.kingdom = animal.kingdom
+        An.collection.push(this)
     }
+   
+
+
+// static all(){
+//     return this.collection;
+// }
 
     renderAnimalName(){
         return (`<li id="animal-${this.id}">

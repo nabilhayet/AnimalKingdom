@@ -6,14 +6,7 @@ This project lets a user to create a new kingdom or an animal. After creating, a
 <a href="https://www.youtube.com/watch?v=qN_K-UsMAEo&t=3s">Demo</a>
 
 Table of Contents
-<ol>
-   <li><a id="user-content-features" href="#features">Features</a></li>
-    <li><a id="user-content-tech-stack" href="#tech stack">Tech Stack</a></li>
-    <li><a id="user-content-installing" href="#installing">Installing</a></li>
-    <li><a id="user-content-challenges" href="#challenges">Challenges</a></li>
-    <li><a id="user-content-future-implementation" href="#future-implementation">Future Implementation</a></li>
-    <li><a id="user-content-code-snippet" href="#code-snippet">Code Snippet</a></li>
-</ol>
+- [Tech-Stack](#tech-stack)
                                
 <h3><a class="anchor" aria-hidden="true" href="#features"></a>Features</h3>
 <ul>
@@ -34,7 +27,7 @@ Table of Contents
 ![dem](https://user-images.githubusercontent.com/33500404/109376302-97f5ee00-7891-11eb-89aa-6fdfd054c8c9.gif)
 
 
-<h3><a id="user-content-tech-stack" class="anchor" aria-hidden="true" href="#tech-stack"></a>Tech Stack</h3>
+## Tech-Stack
 <p>This web app makes use of the following:</p>
 
 * ruby '2.6.1'

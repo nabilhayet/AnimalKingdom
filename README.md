@@ -6,9 +6,14 @@ This project lets a user to create a new kingdom or an animal. After creating, a
 <a href="https://www.youtube.com/watch?v=qN_K-UsMAEo&t=3s">Demo</a>
 
 Table of Contents
+- [Features](#features)
 - [Tech-Stack](#tech-stack)
+- [Installing](#installing)
+- [Challenges](#challenges)
+- [Future-Implementation](#future-implementation)
+- [Code-Snippet](#code-snippet)
                                
-<h3><a class="anchor" aria-hidden="true" href="#features"></a>Features</h3>
+## Features
 <ul>
 <li>Full CRUD capabilities for Animals such as</li>
 <li>Add a new animal</li>
@@ -26,7 +31,6 @@ Table of Contents
 
 ![dem](https://user-images.githubusercontent.com/33500404/109376302-97f5ee00-7891-11eb-89aa-6fdfd054c8c9.gif)
 
-
 ## Tech-Stack
 <p>This web app makes use of the following:</p>
 
@@ -38,7 +42,7 @@ Table of Contents
 * 'rack-cors'
 * 'byebug'
 
-<h3><a id="user-content-installing" class="anchor" aria-hidden="true" href="#installing"></a>Installing</h3>
+## Installing
 <ul>
 <li> Clone this repo to your local machine git clone <this-repo-url></li>
 <li> run bundle install to install required dependencies</li>
@@ -48,7 +52,7 @@ Table of Contents
 <li> run rails s to run the server.</li>
 </ul>
         
-<h3><a id="user-content-challenges" class="anchor" aria-hidden="true" href="#challenges"></a>Challenges</h3>
+## Challenges
 <ul>
 <li> Dropdown menu to select a kingdom was not working while creating a new animal in the beginning.</li>
 <li> Once it started to work, the next problem i faced was loading each option twice in dropdown menu</li>
@@ -56,14 +60,15 @@ Table of Contents
 <li> I wasn't able to grab the right item while updatting or deleting</li>
 </ul>
 
-<h3><a id="user-content-future-implementation" class="anchor" aria-hidden="true" href="#future-implementation"></a>Future-Implementation</h3>
+## Future-Implementation
 <ul>
 <li> Add bootstrap to make the UI more appealing</li>
 <li> Insert image for each animal</li>
 <li> Refactor code to reduce fetch calls to backend and remove duplicacy of code</li>
 <li> Add filter method </li>
 </ul> 
-<h3><a id="user-content-code-snippet" class="anchor" aria-hidden="true" href="#code-snippet"></a>Code-Snippet</h3>
+
+## Code-Snippet 
 
 ```
 function fetchSingleAnimal(){

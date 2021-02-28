@@ -38,14 +38,12 @@ Table of Contents
 <p>This web app makes use of the following:</p>
 
 * ruby '2.6.1'
-* 'rails', '~> 6.0.3', '>= 6.0.3.2'
+* 'active_model_serializers'
+* 'rails', '~> 6.0.3', '>= 6.0.3.4'
 * 'sqlite3', '~> 1.4'
 * 'puma', '~> 4.1'
-* 'webpacker', '~> 4.0'
-* 'bcrypt', '~> 3.1.7'
-* 'omniauth-facebook'
-* 'thin'
-* 'omniauth'
+* 'rack-cors'
+* 'byebug'
 
 <h3><a id="user-content-installing" class="anchor" aria-hidden="true" href="#installing"></a>Installing</h3>
 <ul>
@@ -59,19 +57,20 @@ Table of Contents
         
 <h3><a id="user-content-challenges" class="anchor" aria-hidden="true" href="#challenges"></a>Challenges</h3>
 <ul>
-<li> Signing up via third party for the user was not working in the beginning with github.So i switched from github to facebook for omni-auth.</li>
-<li> Making sure to prevent a user from accessing other user's info took some time.</li>
-<li> Following restful routes pattern for nested routes was not easy.</li>
-<li> Create a connection between restaurant and food felt like a mountain to climb.</li>
+<li> Dropdown menu to select a kingdom was not working while creating a new animal in the beginning.</li>
+<li> Once it started to work, the next problem i faced was loading each option twice in dropdown menu</li>
+<li> Converting vanila js to OO js</li>
+<li> I wasn't able to grab the right item while updatting or deleting</li>
 </ul>
 
 <h3><a id="user-content-future-implementation" class="anchor" aria-hidden="true" href="#future-implementation"></a>Future-Implementation</h3>
 <ul>
-<li> Adding nested form to make our app more efficient</li>
-<li> Redesign database to make tables more standard</li>
-<li> Insert images while adding new food</li>
-</ul>
-
+<li>
+<li> Add bootstrap to make the UI more appealing</li>
+<li> Insert image for each animal</li>
+<li> Refactor code to reduce fetch calls to backend and remove duplicacy of code</li>
+<li> Add filter method </li>
+</ul> 
 <h3><a id="user-content-code-snippet" class="anchor" aria-hidden="true" href="#code-snippet"></a>Code-Snippet</h3>
 
 ```

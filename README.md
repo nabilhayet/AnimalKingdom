@@ -29,9 +29,30 @@ Table of Contents
 <li>Sort the animals in descing order</li>
 </ul>
 
-## Signup 
+## Add Animal
+![add_animal](https://user-images.githubusercontent.com/33500404/109560557-08775780-7aaa-11eb-9ced-fb97ad3e9ae6.gif)
 
-![dem](https://user-images.githubusercontent.com/33500404/109376302-97f5ee00-7891-11eb-89aa-6fdfd054c8c9.gif)
+## Animal Details
+![animal_details](https://user-images.githubusercontent.com/33500404/109560604-1331ec80-7aaa-11eb-9137-d59aa25585e8.gif)
+
+## Delete Animal
+![delete_animal](https://user-images.githubusercontent.com/33500404/109560629-1a58fa80-7aaa-11eb-9dfc-a8ea1171e167.gif)
+
+## Search Kingdom
+![search_animal](https://user-images.githubusercontent.com/33500404/109560653-22189f00-7aaa-11eb-9b52-9195717467de.gif)
+
+## Sort Animal
+![sort_animal](https://user-images.githubusercontent.com/33500404/109560687-2d6bca80-7aaa-11eb-82e0-c6c73468c135.gif)
+
+## Update Animal
+![update_animal](https://user-images.githubusercontent.com/33500404/109560723-38265f80-7aaa-11eb-984e-4b85c4b169c4.gif)
+
+## View Animals
+![view_animals](https://user-images.githubusercontent.com/33500404/109560744-3f4d6d80-7aaa-11eb-9992-b7d1b96e9a4e.gif)
+
+## View Kingdoms
+![view_kingdoms](https://user-images.githubusercontent.com/33500404/109560774-48d6d580-7aaa-11eb-860f-d5f0652ee1ce.gif)
+
 
 ## Tech-Stack
 <p>This web app makes use of the following:</p>

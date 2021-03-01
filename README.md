@@ -4,6 +4,8 @@
 This project lets a user create a new kingdom or an animal. After creating, a user can make see all the existing kingdoms or animals with a link. After clicking on a link, the details of a kingdom/animal can be viewed. Updating or deleting an animal option available to the user.
 
 <a href="https://www.youtube.com/watch?v=qN_K-UsMAEo&t=3s">Demo</a>
+<a href="https://github.com/nabilhayet/AnimalKingdom/tree/main/frontend">Frontend</a>
+<a href="https://github.com/nabilhayet/AnimalKingdom/tree/main/backend">Backend</a>
 
 Table of Contents
 - [Features](#features)

@@ -32,7 +32,7 @@ Table of Contents
 ## Add Animal
 ![add_animal](https://user-images.githubusercontent.com/33500404/109560557-08775780-7aaa-11eb-9ced-fb97ad3e9ae6.gif)
 
-## Animal Details
+## Kingdom Details
 ![animal_details](https://user-images.githubusercontent.com/33500404/109560604-1331ec80-7aaa-11eb-9137-d59aa25585e8.gif)
 
 ## Delete Animal
